@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mapeo de tus fuentes */
+  --font-primary: var(--font-primary), sans-serif;
+  --font-secondary: var(--font-secondary), sans-serif;
+
+  /* Tu paleta de colores Premium */
+  --color-dev-blue: #38b6ff;
+  --color-dev-green: #03fa6e;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
