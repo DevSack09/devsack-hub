@@ -31,3 +31,23 @@ export function getToolBySlug(slug: string) {
     include: { category: true, tags: true, technologies: true },
   });
 }
+
+export function getAllToolsForAdmin() {
+  return prisma.tool.findMany({
+    include: { category: true, tags: true, technologies: true },
+    orderBy: { createdAt: "desc" },
+  });
+}
+
+export function getToolById(id: string) {
+  return prisma.tool.findUnique({
+    where: { id },
+    include: { category: true, tags: true, technologies: true },
+  });
+}
+
+export async function isSlugTaken(slug: string, excludeId?: string) {
+  const existing = await prisma.tool.findUnique({ where: { slug }, select: { id: true } });
+  if (!existing) return false;
+  return existing.id !== excludeId;
+}

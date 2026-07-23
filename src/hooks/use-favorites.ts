@@ -37,8 +37,6 @@ function getServerSnapshot(): string[] {
   return [];
 }
 
-// Favoritos del visitante público, guardados en localStorage (no hay cuentas
-// de usuario público, solo el admin autenticado).
 export function useFavorites() {
   const favoriteIds = useSyncExternalStore(subscribe, readFavorites, getServerSnapshot);
 

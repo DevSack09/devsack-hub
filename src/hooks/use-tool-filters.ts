@@ -3,8 +3,6 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
-// Sincroniza filtros (categoría, tag, búsqueda, orden) con los searchParams
-// de la URL para que la galería sea enlazable y compartible.
 export function useToolFilters() {
   const router = useRouter();
   const pathname = usePathname();
@@ -18,10 +16,32 @@ export function useToolFilters() {
       } else {
         params.delete(key);
       }
-      router.push(`${pathname}?${params.toString()}`);
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
     },
     [pathname, router, searchParams]
   );
 
-  return { searchParams, setFilter };
+  const toggleListFilter = useCallback(
+    (key: string, value: string) => {
+      const current = searchParams.get(key)?.split(",").filter(Boolean) ?? [];
+      const next = current.includes(value)
+        ? current.filter((entry) => entry !== value)
+        : [...current, value];
+
+      const params = new URLSearchParams(searchParams.toString());
+      if (next.length > 0) {
+        params.set(key, next.join(","));
+      } else {
+        params.delete(key);
+      }
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [pathname, router, searchParams]
+  );
+
+  const clearFilters = useCallback(() => {
+    router.push(pathname, { scroll: false });
+  }, [pathname, router]);
+
+  return { searchParams, setFilter, toggleListFilter, clearFilters };
 }

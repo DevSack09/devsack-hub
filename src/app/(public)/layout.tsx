@@ -1,5 +1,15 @@
-// Shell del hub público: acá irá el navbar con buscador y el footer,
-// compartidos por /herramientas, /categorias/[slug] y /etiquetas/[slug].
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+
+// Shell del hub público: navbar flotante + footer, compartidos por
+// "/" (galería de herramientas), /categorias/[slug] y /etiquetas/[slug].
+// Theme-aware.
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-screen">{children}</div>;
+  return (
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <Navbar />
+      {children}
+      <Footer />
+    </div>
+  );
 }

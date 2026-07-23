@@ -1,9 +1,46 @@
-// Galería pública: grid de ToolCard + búsqueda en tiempo real, filtros por
-// categoría/tag/tecnología, orden y destacados. Placeholder hasta implementar.
-export default function HerramientasPage() {
+import { Suspense } from "react";
+import type { Metadata } from "next";
+import { getActiveTools, getFeaturedTools } from "@/lib/data/tools";
+import { getCategories } from "@/lib/data/categories";
+import { getTags } from "@/lib/data/tags";
+import { getTechnologies } from "@/lib/data/technologies";
+import { Hero } from "@/components/tools/Hero";
+import { FeaturedSection } from "@/components/tools/FeaturedSection";
+import { ToolsExplorer } from "@/components/tools/ToolsExplorer";
+
+export const metadata: Metadata = {
+  title: "Dev.Sack Hub | Herramientas",
+  description: "Galería de herramientas, IA, componentes y utilidades curadas por Dev.Sack.",
+};
+
+export default async function HomePage() {
+  const [tools, featuredTools, categories, tags, technologies] = await Promise.all([
+    getActiveTools(),
+    getFeaturedTools(),
+    getCategories(),
+    getTags(),
+    getTechnologies(),
+  ]);
+
   return (
-    <main className="p-12">
-      <h1 className="font-primary text-3xl font-bold">Herramientas</h1>
+    <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 pb-24 pt-16 md:px-8">
+      <Hero />
+
+      <FeaturedSection tools={featuredTools} />
+
+      <section>
+        <h2 className="mb-4 font-primary text-xl font-bold text-foreground">
+          {featuredTools.length > 0 ? "Todas las herramientas" : "Herramientas"}
+        </h2>
+        <Suspense fallback={null}>
+          <ToolsExplorer
+            tools={tools}
+            categories={categories}
+            tags={tags}
+            technologies={technologies}
+          />
+        </Suspense>
+      </section>
     </main>
   );
 }

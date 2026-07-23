@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 // Configuración de Montserrat como fuente primaria (para títulos y acentos)
@@ -27,12 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html 
-      lang="es" 
+    <html
+      lang="es"
       className={`${montserratFont.variable} ${poppinsFont.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
     >
-      <body className="antialiased bg-black text-white font-secondary">
-        {children}
+      <body className="bg-background text-foreground antialiased font-secondary transition-colors duration-300">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

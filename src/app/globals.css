@@ -1,19 +1,39 @@
 @import "tailwindcss";
 
-@theme {
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f8fafc;
+  --foreground: #020617;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+}
+
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --surface: #0f172a;
+  --border: #1e293b;
+}
+
+@theme inline {
   /* Mapeo de tus fuentes */
   --font-primary: var(--font-primary), sans-serif;
   --font-secondary: var(--font-secondary), sans-serif;
 
-  /* Tu paleta de colores Premium */
+  /* Tu paleta de colores Premium (acentos de marca, independientes del tema) */
   --color-dev-blue: #38b6ff;
   --color-dev-green: #03fa6e;
+
+  /* Tokens que cambian entre tema claro/oscuro */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #000000;
-  color: #ffffff;
 }
 
 body {

@@ -32,6 +32,46 @@ async function main() {
       create: category,
     });
   }
+
+  const tags = [
+    { name: "Gratis", slug: "gratis" },
+    { name: "Freemium", slug: "freemium" },
+    { name: "Open Source", slug: "open-source" },
+    { name: "IA generativa", slug: "ia-generativa" },
+    { name: "No-code", slug: "no-code" },
+    { name: "Productividad", slug: "productividad" },
+    { name: "Colaborativo", slug: "colaborativo" },
+    { name: "Self-hosted", slug: "self-hosted" },
+  ];
+
+  for (const tag of tags) {
+    await prisma.tag.upsert({
+      where: { slug: tag.slug },
+      update: {},
+      create: tag,
+    });
+  }
+
+  const technologies = [
+    { name: "React", slug: "react" },
+    { name: "Next.js", slug: "nextjs" },
+    { name: "Tailwind CSS", slug: "tailwindcss" },
+    { name: "TypeScript", slug: "typescript" },
+    { name: "Python", slug: "python" },
+    { name: "Node.js", slug: "nodejs" },
+    { name: "PostgreSQL", slug: "postgresql" },
+    { name: "Figma", slug: "figma" },
+    { name: "Docker", slug: "docker" },
+    { name: "GraphQL", slug: "graphql" },
+  ];
+
+  for (const technology of technologies) {
+    await prisma.technology.upsert({
+      where: { slug: technology.slug },
+      update: {},
+      create: technology,
+    });
+  }
 }
 
 main()
