@@ -7,7 +7,6 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import { Press_Start_2P, VT323 } from "next/font/google";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import {
   fadeInUp,
@@ -15,10 +14,18 @@ import {
   staggerContainer,
   staggerContainerReduced,
 } from "@/components/tools/motion-variants";
-
-// Tipografía pixel/retro, cargada solo para este componente (no afecta el resto del sitio).
-const pixelDisplay = Press_Start_2P({ subsets: ["latin"], weight: "400" });
-const pixelBody = VT323({ subsets: ["latin"], weight: "400" });
+import {
+  BOLT,
+  BOX,
+  GEM,
+  HEART,
+  PixelIcon,
+  STAR,
+  monoBody,
+  pixelBody,
+  pixelCorner,
+  pixelDisplay,
+} from "@/components/pixel/pixel-kit";
 
 const TAGLINE = "Construye lo que imaginas, sin pagar de más.";
 const PARAGRAPH =
@@ -31,60 +38,6 @@ const BADGES = [
   { label: "CURADO A MANO", accent: "green" },
   { label: "PARA DEVS Y MAKERS", accent: "blue" },
 ] as const;
-
-// Glifos pixel-art de 8x8, dibujados a mano como filas de texto ("1" = pixel encendido).
-type PixelGlyph = readonly string[];
-
-const GEM: PixelGlyph = [
-  "...11...",
-  "..1111..",
-  ".111111.",
-  "11111111",
-  ".111111.",
-  "..1111..",
-  "...11...",
-  "........",
-];
-const BOLT: PixelGlyph = [
-  "....11..",
-  "...11...",
-  "..11....",
-  ".11111..",
-  "....11..",
-  "...11...",
-  "..11....",
-  ".1......",
-];
-const STAR: PixelGlyph = [
-  "...11...",
-  "...11...",
-  ".1.11.1.",
-  "11111111",
-  ".1.11.1.",
-  "...11...",
-  "...11...",
-  "........",
-];
-const BOX: PixelGlyph = [
-  "........",
-  ".111111.",
-  ".1....1.",
-  ".1....1.",
-  ".1....1.",
-  ".1....1.",
-  ".111111.",
-  "........",
-];
-const HEART: PixelGlyph = [
-  ".11.11..",
-  "1111111.",
-  "1111111.",
-  ".11111..",
-  "..111...",
-  "...1....",
-  "........",
-  "........",
-];
 
 // Posiciones y datos fijos (no Math.random()) para que el marcado coincida
 // entre el render de servidor y el de cliente y no dispare un mismatch de hidratación.
@@ -107,30 +60,6 @@ const PARTICLES = [
   { top: "56%", left: "34%", size: 2, duration: 6, delay: 0.9, color: "bg-dev-blue/40" },
   { top: "90%", left: "38%", size: 2, duration: 9.5, delay: 2.4, color: "bg-dev-green/40" },
 ] as const;
-
-function pixelCorner(cut: number) {
-  return `polygon(${cut}px 0, calc(100% - ${cut}px) 0, 100% ${cut}px, 100% calc(100% - ${cut}px), calc(100% - ${cut}px) 100%, ${cut}px 100%, 0 calc(100% - ${cut}px), 0 ${cut}px)`;
-}
-
-function PixelIcon({ glyph, size, className }: { glyph: PixelGlyph; size: number; className?: string }) {
-  const gridSize = glyph.length;
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox={`0 0 ${gridSize} ${gridSize}`}
-      shapeRendering="crispEdges"
-      className={className}
-      aria-hidden="true"
-    >
-      {glyph.flatMap((row, y) =>
-        [...row].map((cell, x) =>
-          cell === "1" ? <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} fill="currentColor" /> : null
-        )
-      )}
-    </svg>
-  );
-}
 
 // Efecto máquina de escribir: revela el texto carácter a carácter.
 // Desactivado (texto completo de una) si el usuario prefiere motion reducido.
@@ -350,7 +279,7 @@ export function Hero() {
 
         <motion.p
           variants={item}
-          className="mt-6 max-w-xl font-secondary text-base text-foreground/60 sm:text-lg"
+          className={`${monoBody.className} mt-6 max-w-xl text-base text-foreground/60 sm:text-lg`}
         >
           {PARAGRAPH}
         </motion.p>

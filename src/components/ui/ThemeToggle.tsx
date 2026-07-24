@@ -4,8 +4,14 @@ import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { useHasMounted } from "@/hooks/use-has-mounted";
+import { pixelCorner } from "@/components/pixel/pixel-kit";
 
-export function ThemeToggle() {
+type ThemeToggleProps = {
+  /** "pixel" usa el look pixel-art (esquinas escalonadas) del Navbar/Hero público. */
+  variant?: "default" | "pixel";
+};
+
+export function ThemeToggle({ variant = "default" }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const hasMounted = useHasMounted();
 
@@ -14,6 +20,7 @@ export function ThemeToggle() {
   }
 
   const isDark = resolvedTheme === "dark";
+  const isPixel = variant === "pixel";
 
   return (
     <button
@@ -21,7 +28,12 @@ export function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
       aria-pressed={isDark}
-      className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-border bg-surface text-foreground transition-colors hover:bg-border/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dev-blue/40"
+      className={
+        isPixel
+          ? "relative flex h-9 w-9 items-center justify-center border-2 border-border bg-surface text-foreground transition-colors hover:border-dev-blue hover:text-dev-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dev-blue/40"
+          : "relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-border bg-surface text-foreground transition-colors hover:bg-border/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dev-blue/40"
+      }
+      style={isPixel ? { clipPath: pixelCorner(4) } : undefined}
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
