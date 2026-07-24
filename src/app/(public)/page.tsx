@@ -23,24 +23,26 @@ export default async function HomePage() {
   ]);
 
   return (
-    <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 pb-24 pt-16 md:px-8">
+    <>
       <Hero />
 
-      <FeaturedSection tools={featuredTools} />
+      <main className="mx-auto flex max-w-6xl flex-col gap-16 px-4 pb-24 pt-16 md:px-8">
+        <FeaturedSection tools={featuredTools} />
 
-      <section>
-        <h2 className="mb-4 font-primary text-xl font-bold text-foreground">
-          {featuredTools.length > 0 ? "Todas las herramientas" : "Herramientas"}
-        </h2>
-        <Suspense fallback={null}>
-          <ToolsExplorer
-            tools={tools}
-            categories={categories}
-            tags={tags}
-            technologies={technologies}
-          />
-        </Suspense>
-      </section>
-    </main>
+        <section id="herramientas" className="scroll-mt-24">
+          <h2 className="mb-4 font-primary text-xl font-bold text-foreground">
+            {featuredTools.length > 0 ? "Todas las herramientas" : "Herramientas"}
+          </h2>
+          <Suspense fallback={null}>
+            <ToolsExplorer
+              tools={tools}
+              categories={categories}
+              tags={tags}
+              technologies={technologies}
+            />
+          </Suspense>
+        </section>
+      </main>
+    </>
   );
 }

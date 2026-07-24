@@ -15,7 +15,7 @@ export function FeaturedSection({ tools }: { tools: ToolWithRelations[] }) {
   if (tools.length === 0) return null;
 
   return (
-    <section>
+    <section id="destacadas" className="scroll-mt-24">
       <div className="mb-4 flex items-center gap-2">
         <Sparkles size={18} className="text-dev-green" />
         <h2 className="font-primary text-xl font-bold text-foreground">Destacadas</h2>
