@@ -1,12 +1,12 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { ToolCard } from "@/components/tools/ToolCard";
 import {
   staggerContainer,
   staggerContainerReduced,
 } from "@/components/tools/motion-variants";
+import { PixelIcon, STAR, pixelBody } from "@/components/pixel/pixel-kit";
 import type { ToolWithRelations } from "@/types";
 
 export function FeaturedSection({ tools }: { tools: ToolWithRelations[] }) {
@@ -16,9 +16,11 @@ export function FeaturedSection({ tools }: { tools: ToolWithRelations[] }) {
 
   return (
     <section id="destacadas" className="scroll-mt-24">
-      <div className="mb-4 flex items-center gap-2">
-        <Sparkles size={18} className="text-dev-green" />
-        <h2 className="font-primary text-xl font-bold text-foreground">Destacadas</h2>
+      <div className="mb-6 flex items-center gap-2.5">
+        <PixelIcon glyph={STAR} size={20} className="text-dev-green" />
+        <h2 className={`${pixelBody.className} text-2xl tracking-wide text-foreground sm:text-3xl`}>
+          Destacadas
+        </h2>
       </div>
 
       <motion.div
@@ -26,7 +28,7 @@ export function FeaturedSection({ tools }: { tools: ToolWithRelations[] }) {
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
         variants={shouldReduceMotion ? staggerContainerReduced : staggerContainer}
-        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
         {tools.map((tool, index) => (
           <ToolCard key={tool.id} tool={tool} priority={index < 2} />

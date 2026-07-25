@@ -66,6 +66,35 @@ export const HEART: PixelGlyph = [
   "........",
 ];
 
+// Retícula de fondo estilo "hoja cuadriculada" (mismo patrón que usa el Hero),
+// reutilizada por cualquier zona que necesite ecoar esa textura pixel-art.
+export function PixelGrid({
+  className = "",
+  size = 32,
+  fadeToBottom = false,
+}: {
+  className?: string;
+  size?: number;
+  // Atenúa la retícula hacia abajo en vez de cortarla en seco al llegar al borde.
+  fadeToBottom?: boolean;
+}) {
+  const fadeMask = fadeToBottom ? "linear-gradient(to bottom, black, transparent)" : undefined;
+
+  return (
+    <div
+      aria-hidden="true"
+      className={`pointer-events-none absolute inset-0 ${className}`}
+      style={{
+        backgroundImage:
+          "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
+        backgroundSize: `${size}px ${size}px`,
+        maskImage: fadeMask,
+        WebkitMaskImage: fadeMask,
+      }}
+    />
+  );
+}
+
 export function PixelIcon({
   glyph,
   size,

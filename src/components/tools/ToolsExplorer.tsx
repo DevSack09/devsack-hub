@@ -7,6 +7,7 @@ import { FilterPills } from "@/components/tools/FilterPills";
 import { ToolGrid } from "@/components/tools/ToolGrid";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useToolFilters } from "@/hooks/use-tool-filters";
+import { monoBody, pixelBody, pixelCorner } from "@/components/pixel/pixel-kit";
 import type { Category, Tag, Technology, ToolWithRelations } from "@/types";
 
 type ToolsExplorerProps = {
@@ -80,40 +81,48 @@ export function ToolsExplorer({ tools, categories, tags, technologies }: ToolsEx
     <div className="flex flex-col gap-8">
       <SearchBar value={searchTerm} onChange={setSearchTerm} />
 
-      <div className="flex flex-col gap-5 rounded-2xl border border-border bg-surface/60 p-5">
+      <div
+        className="flex flex-col gap-6 border-2 border-border bg-surface/50 p-5 backdrop-blur-sm sm:p-6"
+        style={{ clipPath: pixelCorner(8) }}
+      >
         <FilterPills
           label="Categoría"
           items={categories}
           selected={selectedCategory ? [selectedCategory] : []}
           onToggle={(slug) => setFilter("categoria", selectedCategory === slug ? null : slug)}
+          accent="blue"
+          variant="solid"
         />
         <FilterPills
           label="Etiquetas"
           items={tags}
           selected={selectedTags}
           onToggle={(slug) => toggleListFilter("tags", slug)}
+          accent="blue"
         />
         <FilterPills
           label="Tecnologías"
           items={technologies}
           selected={selectedTechnologies}
           onToggle={(slug) => toggleListFilter("tecnologias", slug)}
-          activeClassName="border-dev-green bg-dev-green/10 text-dev-green"
+          accent="green"
         />
 
         {hasActiveFilters && (
           <button
             type="button"
             onClick={handleClearAll}
-            className="flex w-fit items-center gap-1.5 font-secondary text-sm text-foreground/60 transition-colors hover:text-foreground"
+            className={`${pixelBody.className} flex w-fit items-center gap-1.5 border border-border px-3 py-1.5 text-sm tracking-wide text-foreground/60 transition-colors hover:border-dev-blue/60 hover:text-foreground`}
+            style={{ clipPath: pixelCorner(3) }}
           >
             <X size={14} />
-            Limpiar filtros
+            LIMPIAR FILTROS
           </button>
         )}
       </div>
 
-      <p className="font-secondary text-sm text-foreground/50">
+      <p className={`${monoBody.className} text-sm text-foreground/50`}>
+        <span className="text-dev-green">{">"}</span>{" "}
         {filteredTools.length} {filteredTools.length === 1 ? "herramienta encontrada" : "herramientas encontradas"}
       </p>
 
