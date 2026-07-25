@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "explore": "Explore",
+    "about": "About the project",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "badges": ["100% FREE OR FREEMIUM", "HAND-CURATED", "FOR DEVS & MAKERS"],
+    "tagline": "Build what you imagine, without overpaying.",
+    "paragraph": "Everything you need to build faster, keep learning, and take your projects to the next level.",
+    "ctaExplore": "Explore tools",
+    "ctaFeatured": "See featured"
+  },
+  "featured": {
+    "heading": "Featured"
+  },
+  "explorer": {
+    "heading": "All tools",
+    "headingEmpty": "Tools",
+    "categoryLabel": "Category",
+    "tagsLabel": "Tags",
+    "technologiesLabel": "Technologies",
+    "clearFilters": "Clear filters",
+    "resultsOne": "tool found",
+    "resultsOther": "tools found",
+    "emptyFiltered": "We couldn't find any tools with those filters.",
+    "emptyDefault": "There are no active tools yet.",
+    "searchPlaceholder": "Search tools...",
+    "searchAriaLabel": "Search tools"
+  },
+  "card": {
+    "featuredBadge": "FEATURED",
+    "visit": "VISIT",
+    "ratingLabel": "Rating",
+    "ratingOf": "of 5"
+  },
+  "footer": {
+    "portfolioLabel": "Personal portfolio",
+    "madeWithPrefix": "Made with",
+    "madeWithMiddle": "and lots of",
+    "madeWithSuffix": "by DEV.SACK",
+    "lastUpdatedLabel": "Last updated"
+  }
+}

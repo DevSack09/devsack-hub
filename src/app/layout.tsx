@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import "./globals.css";
 
 // Configuración de Montserrat como fuente primaria (para títulos y acentos)
@@ -36,7 +37,7 @@ export default function RootLayout({
     >
       <body className="bg-background text-foreground antialiased font-secondary transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
+          <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

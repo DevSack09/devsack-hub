@@ -7,7 +7,8 @@ import { getTechnologies } from "@/lib/data/technologies";
 import { Hero } from "@/components/tools/Hero";
 import { FeaturedSection } from "@/components/tools/FeaturedSection";
 import { ToolsExplorer } from "@/components/tools/ToolsExplorer";
-import { BOLT, PixelGrid, PixelIcon, pixelBody } from "@/components/pixel/pixel-kit";
+import { ExplorerHeading } from "@/components/tools/ExplorerHeading";
+import { PixelGrid } from "@/components/pixel/pixel-kit";
 
 export const metadata: Metadata = {
   title: "Dev.Sack Hub | Herramientas",
@@ -45,12 +46,7 @@ export default async function HomePage() {
           <FeaturedSection tools={featuredTools} />
 
           <section id="herramientas" className="scroll-mt-24">
-            <div className="mb-6 flex items-center gap-2.5">
-              <PixelIcon glyph={BOLT} size={20} className="text-dev-blue" />
-              <h2 className={`${pixelBody.className} text-2xl tracking-wide text-foreground sm:text-3xl`}>
-                {featuredTools.length > 0 ? "Todas las herramientas" : "Herramientas"}
-              </h2>
-            </div>
+            <ExplorerHeading hasFeatured={featuredTools.length > 0} />
             <Suspense fallback={null}>
               <ToolsExplorer
                 tools={tools}

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { pixelBody, pixelCorner } from "@/components/pixel/pixel-kit";
 
 type SearchBarProps = {
@@ -10,6 +11,8 @@ type SearchBarProps = {
 };
 
 export function SearchBar({ value, onChange }: SearchBarProps) {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -25,8 +28,8 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
         type="text"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        placeholder="Buscar herramientas..."
-        aria-label="Buscar herramientas"
+        placeholder={t.explorer.searchPlaceholder}
+        aria-label={t.explorer.searchAriaLabel}
         className={`${pixelBody.className} w-full border-2 border-border bg-surface/80 py-3 pl-11 pr-4 text-lg tracking-wide text-foreground caret-dev-blue shadow-lg shadow-black/5 backdrop-blur-xl outline-none transition-colors placeholder:text-foreground/40 focus:border-dev-blue focus:shadow-[0_0_0_3px_rgba(56,182,255,0.18)] dark:shadow-black/20`}
         style={{ clipPath: pixelCorner(6) }}
       />

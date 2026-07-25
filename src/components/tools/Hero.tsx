@@ -14,6 +14,7 @@ import {
   staggerContainer,
   staggerContainerReduced,
 } from "@/components/tools/motion-variants";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import {
   BOLT,
   BOX,
@@ -27,17 +28,11 @@ import {
   pixelDisplay,
 } from "@/components/pixel/pixel-kit";
 
-const TAGLINE = "Construye lo que imaginas, sin pagar de más.";
-const PARAGRAPH =
-  "Todo lo que necesitas para construir más rápido, aprender continuamente y llevar tus proyectos al siguiente nivel.";
 const TYPE_SPEED_MS = 45;
 const SPOTLIGHT_SIZE = 420;
 
-const BADGES = [
-  { label: "100% GRATIS O FREEMIUM", accent: "blue" },
-  { label: "CURADO A MANO", accent: "green" },
-  { label: "PARA DEVS Y MAKERS", accent: "blue" },
-] as const;
+// Acento de color por posición del badge (el texto llega traducido vía t.hero.badges).
+const BADGE_ACCENTS = ["blue", "green", "blue"] as const;
 
 // Posiciones y datos fijos (no Math.random()) para que el marcado coincida
 // entre el render de servidor y el de cliente y no dispare un mismatch de hidratación.
@@ -84,8 +79,10 @@ function useTypewriter(text: string, speed: number, enabled: boolean) {
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useLanguage();
   const item = shouldReduceMotion ? fadeInUpReduced : fadeInUp;
-  const typedTagline = useTypewriter(TAGLINE, TYPE_SPEED_MS, !shouldReduceMotion);
+  const typedTagline = useTypewriter(t.hero.tagline, TYPE_SPEED_MS, !shouldReduceMotion);
+  const badges = t.hero.badges.map((label, index) => ({ label, accent: BADGE_ACCENTS[index] }));
 
   const sectionRef = useRef<HTMLElement>(null);
   const spotlightX = useMotionValue(0);
@@ -230,7 +227,7 @@ export function Hero() {
           variants={item}
           className="flex flex-wrap items-center justify-center gap-2 sm:gap-3"
         >
-          {BADGES.map((badge) => (
+          {badges.map((badge) => (
             <span
               key={badge.label}
               className={`${pixelBody.className} border px-3 py-1.5 text-xs tracking-wider sm:text-sm ${
@@ -263,7 +260,7 @@ export function Hero() {
 
         <motion.p
           variants={item}
-          aria-label={TAGLINE}
+          aria-label={t.hero.tagline}
           className={`${pixelBody.className} mt-6 text-2xl text-dev-green sm:mt-8 sm:text-3xl md:text-4xl`}
         >
           <span aria-hidden="true">{typedTagline}</span>
@@ -281,7 +278,7 @@ export function Hero() {
           variants={item}
           className={`${monoBody.className} mt-6 max-w-xl text-base text-foreground/60 sm:text-lg`}
         >
-          {PARAGRAPH}
+          {t.hero.paragraph}
         </motion.p>
 
         <motion.div
@@ -293,7 +290,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 bg-dev-green px-5 py-3 font-secondary text-sm font-semibold text-black transition-colors hover:bg-dev-green/90 sm:text-base"
             style={{ clipPath: pixelCorner(6) }}
           >
-            Explorar herramientas
+            {t.hero.ctaExplore}
             <ArrowRight size={16} />
           </a>
           <a
@@ -301,7 +298,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 border-2 border-dev-blue px-5 py-3 font-secondary text-sm font-semibold text-dev-blue transition-colors hover:bg-dev-blue hover:text-black sm:text-base"
             style={{ clipPath: pixelCorner(6) }}
           >
-            Ver destacadas
+            {t.hero.ctaFeatured}
             <ArrowRight size={16} />
           </a>
         </motion.div>

@@ -3,22 +3,24 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Briefcase, Globe, SquareCode } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { PixelIcon, STAR, pixelBody, pixelCorner, pixelDisplay } from "@/components/pixel/pixel-kit";
-
-// lucide-react ya no incluye logos de marca (GitHub/LinkedIn); se usan íconos
-// genéricos equivalentes en su lugar para no depender de otra librería.
-// TODO: reemplazar "#" por las URLs reales (GitHub, LinkedIn, portafolio) cuando se definan.
-const SOCIAL_LINKS = [
-  { label: "GitHub", href: "#", icon: SquareCode, accent: "blue" },
-  { label: "LinkedIn", href: "#", icon: Briefcase, accent: "green" },
-  { label: "Portafolio personal", href: "#", icon: Globe, accent: "blue" },
-] as const;
 
 // Fecha fija, actualizar a mano cuando corresponda.
 const LAST_UPDATED = "23 de julio de 2026";
 
 export function Footer() {
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useLanguage();
+
+  // lucide-react ya no incluye logos de marca (GitHub/LinkedIn); se usan íconos
+  // genéricos equivalentes en su lugar para no depender de otra librería.
+  // TODO: reemplazar "#" por las URLs reales (GitHub, LinkedIn, portafolio) cuando se definan.
+  const SOCIAL_LINKS = [
+    { label: "GitHub", href: "#", icon: SquareCode, accent: "blue" },
+    { label: "LinkedIn", href: "#", icon: Briefcase, accent: "green" },
+    { label: t.footer.portfolioLabel, href: "#", icon: Globe, accent: "blue" },
+  ] as const;
 
   return (
     <footer id="footer" className="mx-4 mt-24 scroll-mt-24 border-t-2 border-border py-10 md:mx-8">
@@ -61,13 +63,13 @@ export function Footer() {
           </div>
 
           <p className={`${pixelBody.className} text-base text-foreground/50`}>
-            Hecho con <span className="text-dev-blue">❤</span> y mucho{" "}
-            <span className="text-dev-green">☕</span> por DEV.SACK
+            {t.footer.madeWithPrefix} <span className="text-dev-blue">❤</span> {t.footer.madeWithMiddle}{" "}
+            <span className="text-dev-green">☕</span> {t.footer.madeWithSuffix}
           </p>
         </div>
 
         <div className={`${pixelBody.className} text-base leading-tight text-foreground/40`}>
-          <p>Última actualización</p>
+          <p>{t.footer.lastUpdatedLabel}</p>
           <p className="text-foreground/60">{LAST_UPDATED}</p>
         </div>
       </div>

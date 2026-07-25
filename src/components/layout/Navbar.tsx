@@ -6,17 +6,19 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageToggle } from "@/components/ui/LanguageToggle";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { PixelIcon, STAR, pixelBody, pixelCorner, pixelDisplay } from "@/components/pixel/pixel-kit";
-
-const NAV_LINKS = [
-  { label: "Explorar", href: "/#herramientas" },
-  { label: "Sobre el proyecto", href: "/#footer" },
-];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useLanguage();
   const closeMenu = () => setIsOpen(false);
+
+  const NAV_LINKS = [
+    { label: t.nav.explore, href: "/#herramientas" },
+    { label: t.nav.about, href: "/#footer" },
+  ];
 
   return (
     <header className="sticky top-4 z-50 mx-4 md:mx-8">
@@ -54,7 +56,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setIsOpen((value) => !value)}
-          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
           aria-expanded={isOpen}
           className="flex h-9 w-9 items-center justify-center border-2 border-border bg-surface text-foreground transition-colors hover:border-dev-blue hover:text-dev-blue md:hidden"
           style={{ clipPath: pixelCorner(4) }}

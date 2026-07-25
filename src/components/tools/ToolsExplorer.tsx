@@ -7,6 +7,7 @@ import { FilterPills } from "@/components/tools/FilterPills";
 import { ToolGrid } from "@/components/tools/ToolGrid";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useToolFilters } from "@/hooks/use-tool-filters";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { monoBody, pixelBody, pixelCorner } from "@/components/pixel/pixel-kit";
 import type { Category, Tag, Technology, ToolWithRelations } from "@/types";
 
@@ -21,6 +22,7 @@ export function ToolsExplorer({ tools, categories, tags, technologies }: ToolsEx
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearch = useDebounce(searchTerm, 250);
   const { searchParams, setFilter, toggleListFilter, clearFilters } = useToolFilters();
+  const { t } = useLanguage();
 
   const selectedCategory = searchParams.get("categoria");
   const selectedTags = useMemo(
@@ -86,7 +88,7 @@ export function ToolsExplorer({ tools, categories, tags, technologies }: ToolsEx
         style={{ clipPath: pixelCorner(8) }}
       >
         <FilterPills
-          label="Categoría"
+          label={t.explorer.categoryLabel}
           items={categories}
           selected={selectedCategory ? [selectedCategory] : []}
           onToggle={(slug) => setFilter("categoria", selectedCategory === slug ? null : slug)}
@@ -94,14 +96,14 @@ export function ToolsExplorer({ tools, categories, tags, technologies }: ToolsEx
           variant="solid"
         />
         <FilterPills
-          label="Etiquetas"
+          label={t.explorer.tagsLabel}
           items={tags}
           selected={selectedTags}
           onToggle={(slug) => toggleListFilter("tags", slug)}
           accent="blue"
         />
         <FilterPills
-          label="Tecnologías"
+          label={t.explorer.technologiesLabel}
           items={technologies}
           selected={selectedTechnologies}
           onToggle={(slug) => toggleListFilter("tecnologias", slug)}
@@ -116,23 +118,19 @@ export function ToolsExplorer({ tools, categories, tags, technologies }: ToolsEx
             style={{ clipPath: pixelCorner(3) }}
           >
             <X size={14} />
-            LIMPIAR FILTROS
+            {t.explorer.clearFilters.toUpperCase()}
           </button>
         )}
       </div>
 
       <p className={`${monoBody.className} text-sm text-foreground/50`}>
         <span className="text-dev-green">{">"}</span>{" "}
-        {filteredTools.length} {filteredTools.length === 1 ? "herramienta encontrada" : "herramientas encontradas"}
+        {filteredTools.length} {filteredTools.length === 1 ? t.explorer.resultsOne : t.explorer.resultsOther}
       </p>
 
       <ToolGrid
         tools={filteredTools}
-        emptyMessage={
-          hasActiveFilters
-            ? "No encontramos herramientas con esos filtros."
-            : "Todavía no hay herramientas activas."
-        }
+        emptyMessage={hasActiveFilters ? t.explorer.emptyFiltered : t.explorer.emptyDefault}
       />
     </div>
   );

@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { incrementToolClicks } from "@/lib/actions/tools";
 import { fadeInUp, fadeInUpReduced } from "@/components/tools/motion-variants";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import {
   BOX,
   PixelGrid,
@@ -18,6 +19,7 @@ import type { ToolWithRelations } from "@/types";
 
 export function ToolCard({ tool, priority = false }: { tool: ToolWithRelations; priority?: boolean }) {
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useLanguage();
   const visibleTags = tool.tags.slice(0, 3);
   const extraTags = tool.tags.length - visibleTags.length;
 
@@ -36,7 +38,7 @@ export function ToolCard({ tool, priority = false }: { tool: ToolWithRelations; 
           style={{ clipPath: pixelCorner(3) }}
         >
           <PixelIcon glyph={STAR} size={10} />
-          DESTACADA
+          {t.card.featuredBadge}
         </span>
       )}
 
@@ -96,7 +98,10 @@ export function ToolCard({ tool, priority = false }: { tool: ToolWithRelations; 
         )}
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-2">
-          <div className="flex items-center gap-0.5" aria-label={`Recomendación: ${tool.recommendationLevel} de 5`}>
+          <div
+            className="flex items-center gap-0.5"
+            aria-label={`${t.card.ratingLabel}: ${tool.recommendationLevel} ${t.card.ratingOf}`}
+          >
             {Array.from({ length: 5 }).map((_, index) => (
               <PixelIcon
                 key={index}
@@ -117,7 +122,7 @@ export function ToolCard({ tool, priority = false }: { tool: ToolWithRelations; 
             className={`${pixelBody.className} flex items-center gap-1.5 bg-dev-blue px-3 py-1.5 text-sm tracking-wide text-black transition-colors hover:bg-dev-blue/90`}
             style={{ clipPath: pixelCorner(3) }}
           >
-            VISITAR
+            {t.card.visit}
             <ExternalLink size={12} />
           </a>
         </div>

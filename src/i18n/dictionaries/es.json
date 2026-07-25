@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "explore": "Explorar",
+    "about": "Sobre el proyecto",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "hero": {
+    "badges": ["100% GRATIS O FREEMIUM", "CURADO A MANO", "PARA DEVS Y MAKERS"],
+    "tagline": "Construye lo que imaginas, sin pagar de más.",
+    "paragraph": "Todo lo que necesitas para construir más rápido, aprender continuamente y llevar tus proyectos al siguiente nivel.",
+    "ctaExplore": "Explorar herramientas",
+    "ctaFeatured": "Ver destacadas"
+  },
+  "featured": {
+    "heading": "Destacadas"
+  },
+  "explorer": {
+    "heading": "Todas las herramientas",
+    "headingEmpty": "Herramientas",
+    "categoryLabel": "Categoría",
+    "tagsLabel": "Etiquetas",
+    "technologiesLabel": "Tecnologías",
+    "clearFilters": "Limpiar filtros",
+    "resultsOne": "herramienta encontrada",
+    "resultsOther": "herramientas encontradas",
+    "emptyFiltered": "No encontramos herramientas con esos filtros.",
+    "emptyDefault": "Todavía no hay herramientas activas.",
+    "searchPlaceholder": "Buscar herramientas...",
+    "searchAriaLabel": "Buscar herramientas"
+  },
+  "card": {
+    "featuredBadge": "DESTACADA",
+    "visit": "VISITAR",
+    "ratingLabel": "Recomendación",
+    "ratingOf": "de 5"
+  },
+  "footer": {
+    "portfolioLabel": "Portafolio personal",
+    "madeWithPrefix": "Hecho con",
+    "madeWithMiddle": "y mucho",
+    "madeWithSuffix": "por DEV.SACK",
+    "lastUpdatedLabel": "Última actualización"
+  }
+}
