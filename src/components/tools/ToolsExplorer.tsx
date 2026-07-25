@@ -92,7 +92,7 @@ export function ToolsExplorer({ tools, categories, tags, technologies }: ToolsEx
           items={categories}
           selected={selectedCategory ? [selectedCategory] : []}
           onToggle={(slug) => setFilter("categoria", selectedCategory === slug ? null : slug)}
-          accent="blue"
+          accent="green"
           variant="solid"
         />
         <FilterPills
@@ -100,7 +100,7 @@ export function ToolsExplorer({ tools, categories, tags, technologies }: ToolsEx
           items={tags}
           selected={selectedTags}
           onToggle={(slug) => toggleListFilter("tags", slug)}
-          accent="blue"
+          accent="green"
         />
         <FilterPills
           label={t.explorer.technologiesLabel}
@@ -114,7 +114,7 @@ export function ToolsExplorer({ tools, categories, tags, technologies }: ToolsEx
           <button
             type="button"
             onClick={handleClearAll}
-            className={`${pixelBody.className} flex w-fit items-center gap-1.5 border border-border px-3 py-1.5 text-sm tracking-wide text-foreground/60 transition-colors hover:border-dev-blue/60 hover:text-foreground`}
+            className={`${pixelBody.className} flex w-fit items-center gap-1.5 border border-border px-3 py-1.5 text-sm tracking-wide text-foreground/60 transition-colors hover:border-dev-green/60 hover:text-foreground`}
             style={{ clipPath: pixelCorner(3) }}
           >
             <X size={14} />

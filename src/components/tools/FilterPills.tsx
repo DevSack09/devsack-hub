@@ -58,7 +58,7 @@ export function FilterPills({
                 `${pixelBody.className} border-2 px-3.5 py-1.5 text-sm tracking-wide transition-colors`,
                 isActive
                   ? ACCENT_STYLES[accent][variant]
-                  : "border-border bg-surface text-foreground/70 hover:border-dev-blue/60 hover:text-foreground"
+                  : "border-border bg-surface text-foreground/70 hover:border-dev-green/60 hover:text-foreground"
               )}
               style={{ clipPath: pixelCorner(4) }}
             >

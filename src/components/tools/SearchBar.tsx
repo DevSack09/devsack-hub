@@ -30,7 +30,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
         onChange={(event) => onChange(event.target.value)}
         placeholder={t.explorer.searchPlaceholder}
         aria-label={t.explorer.searchAriaLabel}
-        className={`${pixelBody.className} w-full border-2 border-border bg-surface/80 py-3 pl-11 pr-4 text-lg tracking-wide text-foreground caret-dev-blue shadow-lg shadow-black/5 backdrop-blur-xl outline-none transition-colors placeholder:text-foreground/40 focus:border-dev-blue focus:shadow-[0_0_0_3px_rgba(56,182,255,0.18)] dark:shadow-black/20`}
+        className={`${pixelBody.className} w-full border-2 border-border bg-surface/80 py-3 pl-11 pr-4 text-lg tracking-wide text-foreground caret-dev-green shadow-lg shadow-black/5 backdrop-blur-xl outline-none transition-colors placeholder:text-foreground/40 focus:border-dev-green focus:shadow-[0_0_0_3px_rgba(3,250,110,0.18)] dark:shadow-black/20`}
         style={{ clipPath: pixelCorner(6) }}
       />
     </motion.div>
