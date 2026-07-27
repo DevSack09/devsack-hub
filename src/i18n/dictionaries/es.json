@@ -18,10 +18,6 @@
   "explorer": {
     "heading": "Todas las herramientas",
     "headingEmpty": "Herramientas",
-    "categoryLabel": "Categoría",
-    "tagsLabel": "Etiquetas",
-    "technologiesLabel": "Tecnologías",
-    "clearFilters": "Limpiar filtros",
     "resultsOne": "herramienta encontrada",
     "resultsOther": "herramientas encontradas",
     "emptyFiltered": "No encontramos herramientas con esos filtros.",

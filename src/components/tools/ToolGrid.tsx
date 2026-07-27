@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { EmptyState } from "@/components/tools/EmptyState";
@@ -9,7 +10,13 @@ import {
 } from "@/components/tools/motion-variants";
 import type { ToolWithRelations } from "@/types";
 
-export function ToolGrid({ tools, emptyMessage }: { tools: ToolWithRelations[]; emptyMessage: string }) {
+export const ToolGrid = memo(function ToolGrid({
+  tools,
+  emptyMessage,
+}: {
+  tools: ToolWithRelations[];
+  emptyMessage: string;
+}) {
   const shouldReduceMotion = useReducedMotion();
 
   if (tools.length === 0) {
@@ -19,8 +26,7 @@ export function ToolGrid({ tools, emptyMessage }: { tools: ToolWithRelations[]; 
   return (
     <motion.div
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      animate="visible"
       variants={shouldReduceMotion ? staggerContainerReduced : staggerContainer}
       className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
@@ -29,4 +35,4 @@ export function ToolGrid({ tools, emptyMessage }: { tools: ToolWithRelations[]; 
       ))}
     </motion.div>
   );
-}
+});

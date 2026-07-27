@@ -1,9 +1,5 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getActiveTools, getFeaturedTools } from "@/lib/data/tools";
-import { getCategories } from "@/lib/data/categories";
-import { getTags } from "@/lib/data/tags";
-import { getTechnologies } from "@/lib/data/technologies";
 import { Hero } from "@/components/tools/Hero";
 import { FeaturedSection } from "@/components/tools/FeaturedSection";
 import { ToolsExplorer } from "@/components/tools/ToolsExplorer";
@@ -17,13 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [tools, featuredTools, categories, tags, technologies] = await Promise.all([
-    getActiveTools(),
-    getFeaturedTools(),
-    getCategories(),
-    getTags(),
-    getTechnologies(),
-  ]);
+  const [tools, featuredTools] = await Promise.all([getActiveTools(), getFeaturedTools()]);
 
   return (
     <>
@@ -48,14 +38,7 @@ export default async function HomePage() {
 
           <section id="herramientas" className="scroll-mt-24">
             <ExplorerHeading hasFeatured={featuredTools.length > 0} />
-            <Suspense fallback={null}>
-              <ToolsExplorer
-                tools={tools}
-                categories={categories}
-                tags={tags}
-                technologies={technologies}
-              />
-            </Suspense>
+            <ToolsExplorer tools={tools} />
           </section>
 
           <AboutSection />

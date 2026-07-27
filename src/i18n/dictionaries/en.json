@@ -18,10 +18,6 @@
   "explorer": {
     "heading": "All tools",
     "headingEmpty": "Tools",
-    "categoryLabel": "Category",
-    "tagsLabel": "Tags",
-    "technologiesLabel": "Technologies",
-    "clearFilters": "Clear filters",
     "resultsOne": "tool found",
     "resultsOther": "tools found",
     "emptyFiltered": "We couldn't find any tools with those filters.",

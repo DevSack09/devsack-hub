@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
@@ -17,7 +18,13 @@ import {
 } from "@/components/pixel/pixel-kit";
 import type { ToolWithRelations } from "@/types";
 
-export function ToolCard({ tool, priority = false }: { tool: ToolWithRelations; priority?: boolean }) {
+export const ToolCard = memo(function ToolCard({
+  tool,
+  priority = false,
+}: {
+  tool: ToolWithRelations;
+  priority?: boolean;
+}) {
   const shouldReduceMotion = useReducedMotion();
   const { t } = useLanguage();
   const visibleTags = tool.tags.slice(0, 3);
@@ -129,4 +136,4 @@ export function ToolCard({ tool, priority = false }: { tool: ToolWithRelations; 
       </div>
     </motion.div>
   );
-}
+});
