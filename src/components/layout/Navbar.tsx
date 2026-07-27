@@ -17,7 +17,7 @@ export function Navbar() {
 
   const NAV_LINKS = [
     { label: t.nav.explore, href: "/#herramientas" },
-    { label: t.nav.about, href: "/#footer" },
+    { label: t.nav.about, href: "/#sobre-el-proyecto" },
   ];
 
   return (

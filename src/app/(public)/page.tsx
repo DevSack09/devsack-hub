@@ -8,6 +8,7 @@ import { Hero } from "@/components/tools/Hero";
 import { FeaturedSection } from "@/components/tools/FeaturedSection";
 import { ToolsExplorer } from "@/components/tools/ToolsExplorer";
 import { ExplorerHeading } from "@/components/tools/ExplorerHeading";
+import { AboutSection } from "@/components/tools/AboutSection";
 import { PixelGrid } from "@/components/pixel/pixel-kit";
 
 export const metadata: Metadata = {
@@ -56,6 +57,8 @@ export default async function HomePage() {
               />
             </Suspense>
           </section>
+
+          <AboutSection />
         </div>
       </main>
     </>

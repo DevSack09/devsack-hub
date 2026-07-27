@@ -35,6 +35,12 @@
     "ratingLabel": "Rating",
     "ratingOf": "of 5"
   },
+  "about": {
+    "heading": "About the project",
+    "paragraph1": "Dev.Sack was born from a simple frustration: spending more time searching for the right tool than actually building with it.",
+    "paragraph2": "This project exists to save the developer community those hours of searching, bringing together quality tools, platforms, and resources in one place — hand-curated, with no noise and no filler.",
+    "cta": "Explore"
+  },
   "footer": {
     "portfolioLabel": "Personal portfolio",
     "madeWithPrefix": "Made with",
