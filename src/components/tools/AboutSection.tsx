@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Heart } from "lucide-react";
 import {
   fadeInUp,
   fadeInUpReduced,
@@ -9,7 +9,7 @@ import {
   staggerContainerReduced,
 } from "@/components/tools/motion-variants";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { HEART, PixelIcon, monoBody, pixelBody, pixelCorner } from "@/components/pixel/pixel-kit";
+import { monoBody, pixelBody, pixelCorner } from "@/components/pixel/pixel-kit";
 
 export function AboutSection() {
   const shouldReduceMotion = useReducedMotion();
@@ -27,7 +27,7 @@ export function AboutSection() {
       style={{ clipPath: pixelCorner(14) }}
     >
       <motion.div variants={item} className="flex items-center justify-center gap-2.5">
-        <PixelIcon glyph={HEART} size={20} className="text-dev-green" />
+        <Heart size={20} className="text-dev-green" />
         <h2 className={`${pixelBody.className} text-2xl tracking-wide text-foreground sm:text-3xl`}>
           {t.about.heading}
         </h2>

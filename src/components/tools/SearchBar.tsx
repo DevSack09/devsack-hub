@@ -18,11 +18,11 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-      className="relative mx-auto w-full max-w-xl"
+      className="group relative mx-auto w-full max-w-xl"
     >
       <Search
         size={18}
-        className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-foreground/40"
+        className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-foreground/40 transition-colors group-focus-within:text-dev-green"
       />
       <input
         type="text"
