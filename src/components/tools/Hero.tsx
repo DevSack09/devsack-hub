@@ -112,11 +112,13 @@ export function Hero() {
   }, [shouldReduceMotion, spotlightX, spotlightY]);
 
   return (
-    // "dark" fuerza los tokens de tema oscuro dentro del Hero sin importar el
-    // tema elegido por el visitante: la estética "espacio pixel-art" solo funciona en oscuro.
+    // Theme-aware como el resto del sitio (antes forzaba "dark" acá). Los
+    // acentos de marca (dev-blue/dev-green) y los glows quedan bien en ambos
+    // temas porque son colores fijos sobre --background/--surface, que ya
+    // cambian solos entre claro y oscuro.
     <section
       ref={sectionRef}
-      className="dark relative isolate flex min-h-screen items-center overflow-hidden bg-background px-5 text-foreground sm:px-8 md:px-10"
+      className="relative isolate flex min-h-screen items-center overflow-hidden bg-background px-5 text-foreground sm:px-8 md:px-10"
     >
       {/* Fondo base */}
       <div className="absolute inset-0 -z-30 bg-gradient-to-b from-background via-background to-surface/60" />

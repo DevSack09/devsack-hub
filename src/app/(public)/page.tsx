@@ -20,13 +20,10 @@ export default async function HomePage() {
       <Hero />
 
       <main className="relative">
-        {/* Puente visual: funde el fondo forzado oscuro del Hero con el tema
-            actual del visitante, para que el scroll no se sienta como un corte
-            entre dos sitios distintos (seamless en tema oscuro, degradado suave en claro). */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-[#020617] to-background sm:h-40"
-        />
+        {/* Continuidad de textura: el Hero ya comparte el mismo tema que el resto
+            de la página (dejó de forzar "dark"), así que no hace falta fundir
+            colores acá — solo se extiende la retícula pixel-art un poco más
+            para que el corte hacia el contenido no se sienta tan abrupto. */}
         <PixelGrid
           className="-z-10 top-0 h-32 opacity-20 sm:h-40"
           size={32}
