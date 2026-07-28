@@ -2,6 +2,7 @@
 
 import { memo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { incrementToolClicks } from "@/lib/actions/tools";
@@ -39,9 +40,14 @@ export const ToolCard = memo(function ToolCard({
       className="group relative flex h-full flex-col overflow-hidden border-2 border-border bg-surface transition-colors duration-200 hover:border-dev-blue/70 hover:shadow-[0_0_0_1px_rgba(56,182,255,0.25),0_18px_36px_-14px_rgba(56,182,255,0.4)] dark:hover:shadow-[0_0_0_1px_rgba(56,182,255,0.3),0_18px_36px_-14px_rgba(56,182,255,0.5)]"
       style={{ clipPath: pixelCorner(10) }}
     >
+      {/* Enlace "estirado": cubre toda la card para navegar al detalle sin anidar
+          un <a> dentro de otro <a> (el botón "Visitar" abajo necesita quedar por
+          encima en z-index para seguir siendo clickeable de forma independiente). */}
+      <Link href={`/h/${tool.slug}`} className="absolute inset-0 z-10" aria-label={tool.name} />
+
       {tool.isFeatured && (
         <span
-          className={`${pixelBody.className} absolute right-3 top-3 z-10 flex items-center gap-1 border border-dev-green/70 bg-background/90 px-2 py-1 text-xs tracking-wider text-dev-green backdrop-blur-sm`}
+          className={`${pixelBody.className} pointer-events-none absolute right-3 top-3 z-10 flex items-center gap-1 border border-dev-green/70 bg-background/90 px-2 py-1 text-xs tracking-wider text-dev-green backdrop-blur-sm`}
           style={{ clipPath: pixelCorner(3) }}
         >
           <PixelIcon glyph={STAR} size={10} />
@@ -66,7 +72,7 @@ export const ToolCard = memo(function ToolCard({
           </div>
         )}
         <span
-          className={`${pixelBody.className} absolute left-3 top-3 border border-border bg-background/85 px-2 py-1 text-xs tracking-wider text-foreground/80 backdrop-blur-sm`}
+          className={`${pixelBody.className} pointer-events-none absolute left-3 top-3 z-10 border border-border bg-background/85 px-2 py-1 text-xs tracking-wider text-foreground/80 backdrop-blur-sm`}
           style={{ clipPath: pixelCorner(3) }}
         >
           {tool.category.name.toUpperCase()}
@@ -126,7 +132,7 @@ export const ToolCard = memo(function ToolCard({
             onClick={() => {
               incrementToolClicks(tool.id);
             }}
-            className={`${pixelBody.className} flex items-center gap-1.5 bg-dev-blue px-3 py-1.5 text-sm tracking-wide text-black transition-colors hover:bg-dev-blue/90`}
+            className={`${pixelBody.className} relative z-20 flex items-center gap-1.5 bg-dev-blue px-3 py-1.5 text-sm tracking-wide text-black transition-colors hover:bg-dev-blue/90`}
             style={{ clipPath: pixelCorner(3) }}
           >
             {t.card.visit}

@@ -31,6 +31,17 @@
     "ratingLabel": "Recomendación",
     "ratingOf": "de 5"
   },
+  "detail": {
+    "back": "Volver al catálogo",
+    "categoryLabel": "Categoría",
+    "technologiesLabel": "Tecnologías",
+    "tagsLabel": "Etiquetas",
+    "visit": "Visitar herramienta",
+    "preview": "Vista previa",
+    "noPreview": "Sin vista previa disponible",
+    "copyLink": "Copiar enlace de la página",
+    "copyLinkSuccess": "Enlace copiado"
+  },
   "about": {
     "heading": "Sobre el proyecto",
     "paragraph1": "Dev.Sack nació de una frustración simple: pasar más tiempo buscando la herramienta correcta que construyendo con ella.",

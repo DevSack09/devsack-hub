@@ -31,6 +31,17 @@
     "ratingLabel": "Rating",
     "ratingOf": "of 5"
   },
+  "detail": {
+    "back": "Back to catalog",
+    "categoryLabel": "Category",
+    "technologiesLabel": "Technologies",
+    "tagsLabel": "Tags",
+    "visit": "Visit tool",
+    "preview": "Preview",
+    "noPreview": "No preview available",
+    "copyLink": "Copy page link",
+    "copyLinkSuccess": "Link copied"
+  },
   "about": {
     "heading": "About the project",
     "paragraph1": "Dev.Sack was born from a simple frustration: spending more time searching for the right tool than actually building with it.",
